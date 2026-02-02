@@ -1,0 +1,144 @@
+#SOC Case Study — SSH Brute Force Detection with Wazuh
+
+##Project Overview
+
+This project demonstrates the detection, analysis, and validation of an **SSH brute force attack** using **Wazuh SIEM** in a monitored Linux environment.  
+The objective is to simulate a real Security Operations Center (SOC) Level 1 workflow, covering log analysis, SIEM alert triage, IOC identification, and incident classification.
+
+---
+
+##Environment Setup
+
+| Role     | System                                 |
+
+| Attacker | Linux Mint (host)                      |
+| Target   | Ubuntu Server                          |
+| SIEM     | Wazuh Manager & Dashboard              |
+| Agent    | Wazuh Agent installed on Ubuntu Server |
+
+> **Note:** Due to hardware constraints, the attacker host and the Wazuh Manager were running on the same physical machine.  
+> The attack was executed over the network against a **separate monitored host**, and all events were properly collected and correlated by the SIEM.
+
+---
+
+##Attack Scenario
+
+- **Attack Type:** SSH Brute Force  
+- **Target Service:** OpenSSH (port 22)  
+- **Objective:** Unauthorized access via repeated authentication attempts  
+- **Technique:** Automated password guessing  
+
+The attacker performed multiple SSH authentication attempts against a valid user account within a short time window, a behavior consistent with automated brute force tools rather than legitimate user activity.
+
+---
+
+##Log Analysis (Host-Based Evidence)
+
+Relevant authentication logs were collected from the target system using `journalctl`. The logs reveal repeated failed SSH login attempts originating from a single source IP.
+
+### Sample Log Evidence
+
+```text
+Feb 02 09:31:19 ubuntuserver sshd[3330]: Failed password for ubuntuserver from 192.168.1.70 port 52146 ssh2
+Feb 02 09:31:21 ubuntuserver sshd[3329]: Failed password for ubuntuserver from 192.168.1.70 port 52142 ssh2
+Feb 02 09:31:31 ubuntuserver sshd[3328]: error: maximum authentication attempts exceeded for ubuntuserver from 192.168.1.70 port 52144 ssh2 [preauth]
+````
+
+### Observed Patterns
+
+* Repeated failed authentication attempts
+* Single source IP address: **192.168.1.70**
+* Multiple parallel SSH connections using different source ports
+* Short interval between attempts (seconds)
+* SSH daemon enforcing maximum authentication limits
+
+These patterns strongly indicate **automated brute force activity**, not user error or misconfiguration.
+
+---
+
+##SIEM Detection (Wazuh)
+
+The Wazuh SIEM successfully correlated the authentication failures and generated multiple alerts related to brute force behavior.
+
+###Alert Details
+
+* **Rule Description:** Maximum authentication attempts exceeded
+* **Rule Level:** Medium
+* **Number of Alerts:** 11
+* **MITRE ATT&CK Technique:**
+
+  * **T1110 – Brute Force**
+* **MITRE Tactic:**
+
+  * Credential Access
+* **Log Source:** `sshd` via `journalctl`
+* **Affected Host:** `ubuntuserver`
+
+###SIEM Analysis
+
+Wazuh correlated repeated SSH authentication failures from the same source IP within a defined time window and mapped the activity to the MITRE ATT&CK framework, confirming brute force behavior.
+
+---
+
+##Incident Timeline
+
+| Time (UTC) | Event                                                                            |
+| ---------- | -------------------------------------------------------------------------------- |
+| 09:31:16   | First failed SSH authentication attempt detected on the target host              |
+| 09:31:19   | Multiple failed authentication attempts observed from the same source IP         |
+| 09:31:24   | Parallel SSH connections using different source ports identified                 |
+| 09:31:31   | SSH daemon enforces maximum authentication attempts and disconnects the attacker |
+| 09:31:32   | Wazuh SIEM correlates events and generates brute force alerts (MITRE T1110)      |
+| 09:31:33   | Incident validated and classified as a confirmed security incident               |
+
+---
+
+##Indicators of Compromise (IOCs)
+
+| Type             | Indicator                         |
+| ---------------- | --------------------------------- |
+| Source IP        | 192.168.1.70                      |
+| Target Service   | SSH (22)                          |
+| Target User      | ubuntuserver                      |
+| Attack Technique | MITRE T1110 – Brute Force         |
+| Attack Pattern   | Automated authentication attempts |
+| Affected Host    | ubuntuserver                      |
+
+---
+
+##Incident Classification
+
+###Final Decision
+
+> Based on the volume and frequency of failed SSH authentication attempts, the single-source origin, automated connection patterns, and SIEM correlation performed by Wazuh, the activity was classified as a **Confirmed Security Incident – SSH Brute Force Attack**.
+
+* **Impact:** Attempted compromise
+* **Result:** No successful authentication observed
+* **Severity:** Medium
+
+---
+
+##Recommended Mitigations
+
+* Block the source IP at firewall level
+* Deploy **Fail2Ban** to limit SSH authentication attempts
+* Disable password-based SSH authentication
+* Enforce SSH key-based authentication
+* Restrict SSH access by IP where feasible
+
+---
+
+##Skills Demonstrated
+
+* Linux authentication log analysis (`journalctl`, SSH logs)
+* SIEM monitoring and alert triage using Wazuh
+* MITRE ATT&CK technique and tactic mapping
+* Incident validation and classification
+* IOC identification and documentation
+* SOC Level 1 incident reporting methodology
+
+---
+
+##Conclusion
+
+This case study simulates a real-world SOC scenario and demonstrates the full lifecycle of an SSH brute force incident — from raw log analysis and SIEM alert correlation to final incident classification — using industry-standard security tools and frameworks.
