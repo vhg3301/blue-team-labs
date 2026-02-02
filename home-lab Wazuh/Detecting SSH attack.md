@@ -44,6 +44,14 @@ Feb 02 09:31:21 ubuntuserver sshd[3329]: Failed password for ubuntuserver from 1
 Feb 02 09:31:31 ubuntuserver sshd[3328]: error: maximum authentication attempts exceeded for ubuntuserver from 192.168.1.70 port 52144 ssh2 [preauth]
 ````
 
+## Evidence — Raw SSH Logs
+
+The following log entries were collected directly from the target host using `journalctl` and provide host-based evidence of the brute force activity detected by the SIEM.
+
+![Wazuh SSH Brute Force Alert](images/logs_of_brute_force_simulation.png)
+
+These logs confirm the SIEM findings by showing repeated authentication failures from a single source IP within a short time window, consistent with automated brute force behavior.
+
 ### Observed Patterns
 
 * Repeated failed authentication attempts
@@ -91,7 +99,14 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 | 09:31:32   | Wazuh SIEM correlates events and generates brute force alerts (MITRE T1110)      |
 | 09:31:33   | Incident validated and classified as a confirmed security incident               |
 
+### Wazuh SIEM Alerts
+
+The screenshot below shows the Wazuh SIEM dashboard correlating multiple SSH authentication failures and generating alerts mapped to the MITRE ATT&CK framework (T1110 – Brute Force).
+
+
 ![Wazuh SSH Brute Force Alert](images/siem_logs_brute_force.png)
+
+
 
 ---
 
