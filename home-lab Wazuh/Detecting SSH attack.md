@@ -1,13 +1,13 @@
-#SOC Case Study — SSH Brute Force Detection with Wazuh
+# SOC Case Study — SSH Brute Force Detection with Wazuh
 
-##Project Overview
+## Project Overview
 
 This project demonstrates the detection, analysis, and validation of an **SSH brute force attack** using **Wazuh SIEM** in a monitored Linux environment.  
 The objective is to simulate a real Security Operations Center (SOC) Level 1 workflow, covering log analysis, SIEM alert triage, IOC identification, and incident classification.
 
 ---
 
-##Environment Setup
+## Environment Setup
 
 | Role     | System                                 |
 
@@ -21,7 +21,7 @@ The objective is to simulate a real Security Operations Center (SOC) Level 1 wor
 
 ---
 
-##Attack Scenario
+## Attack Scenario
 
 - **Attack Type:** SSH Brute Force  
 - **Target Service:** OpenSSH (port 22)  
@@ -32,7 +32,7 @@ The attacker performed multiple SSH authentication attempts against a valid user
 
 ---
 
-##Log Analysis (Host-Based Evidence)
+## Log Analysis (Host-Based Evidence)
 
 Relevant authentication logs were collected from the target system using `journalctl`. The logs reveal repeated failed SSH login attempts originating from a single source IP.
 
@@ -56,11 +56,11 @@ These patterns strongly indicate **automated brute force activity**, not user er
 
 ---
 
-##SIEM Detection (Wazuh)
+## SIEM Detection (Wazuh)
 
 The Wazuh SIEM successfully correlated the authentication failures and generated multiple alerts related to brute force behavior.
 
-###Alert Details
+### Alert Details
 
 * **Rule Description:** Maximum authentication attempts exceeded
 * **Rule Level:** Medium
@@ -74,13 +74,13 @@ The Wazuh SIEM successfully correlated the authentication failures and generated
 * **Log Source:** `sshd` via `journalctl`
 * **Affected Host:** `ubuntuserver`
 
-###SIEM Analysis
+### SIEM Analysis
 
 Wazuh correlated repeated SSH authentication failures from the same source IP within a defined time window and mapped the activity to the MITRE ATT&CK framework, confirming brute force behavior.
 
 ---
 
-##Incident Timeline
+## Incident Timeline
 
 | Time (UTC) | Event                                                                            |
 | ---------- | -------------------------------------------------------------------------------- |
@@ -91,11 +91,11 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 | 09:31:32   | Wazuh SIEM correlates events and generates brute force alerts (MITRE T1110)      |
 | 09:31:33   | Incident validated and classified as a confirmed security incident               |
 
-![Wazuh SSH Brute Force Alert](/blue-team-labs/home-lab_Wazuh/images/siem_logs_brute_force.png)
+![Wazuh SSH Brute Force Alert](/images/siem_logs_brute_force.png)
 
 ---
 
-##Indicators of Compromise (IOCs)
+## Indicators of Compromise (IOCs)
 
 | Type             | Indicator                         |
 | ---------------- | --------------------------------- |
@@ -108,9 +108,9 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 
 ---
 
-##Incident Classification
+## Incident Classification
 
-###Final Decision
+### Final Decision
 
 > Based on the volume and frequency of failed SSH authentication attempts, the single-source origin, automated connection patterns, and SIEM correlation performed by Wazuh, the activity was classified as a **Confirmed Security Incident – SSH Brute Force Attack**.
 
@@ -120,7 +120,7 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 
 ---
 
-##Recommended Mitigations
+## Recommended Mitigations
 
 * Block the source IP at firewall level
 * Deploy **Fail2Ban** to limit SSH authentication attempts
@@ -130,7 +130,7 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 
 ---
 
-##Skills Demonstrated
+## Skills Demonstrated
 
 * Linux authentication log analysis (`journalctl`, SSH logs)
 * SIEM monitoring and alert triage using Wazuh
@@ -141,6 +141,6 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 
 ---
 
-##Conclusion
+## Conclusion
 
 This case study simulates a real-world SOC scenario and demonstrates the full lifecycle of an SSH brute force incident — from raw log analysis and SIEM alert correlation to final incident classification — using industry-standard security tools and frameworks.
