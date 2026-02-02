@@ -91,6 +91,8 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 | 09:31:32   | Wazuh SIEM correlates events and generates brute force alerts (MITRE T1110)      |
 | 09:31:33   | Incident validated and classified as a confirmed security incident               |
 
+![Wazuh SSH Brute Force Alert](/blue-team-labs/home-lab_Wazuh/images/siem_logs_brute_force.png)
+
 ---
 
 ##Indicators of Compromise (IOCs)
