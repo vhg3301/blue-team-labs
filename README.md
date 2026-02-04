@@ -1,93 +1,73 @@
+````markdown
 # Blue Team Labs — Defensive Security Portfolio
 
-Welcome! This repository contains my **Blue Team labs**, focusing on defensive security, incident analysis, and threat awareness.
+Welcome! This repository is my **Blue Team lab portfolio**, focused on **defensive security**, threat detection, and investigation workflows.
 
-The goal of this project is to document real-world security scenarios and demonstrate practical skills such as:
-
-- Email threat analysis (phishing, spoofing, social engineering)
-- IOC identification and documentation
-- Defensive mindset and security reporting
-- Basic incident response reasoning
-- Security awareness + safe investigation practices
+The objective is to document realistic security labs in a structured way — similar to how a SOC analyst would write internal reports.
 
 ---
 
-## About This Repository
+## Goals
 
-This repo is structured as a collection of **mini projects**, each one representing a lab or case study.
+This repository is designed to demonstrate practical skills in:
 
-Each lab contains:
-
-- A written report (`README.md` or `report.md`)
-- Evidence (screenshots)
-- Key indicators and takeaways
-- Defensive recommendations
-
----
-
-## Labs
-
-### 1) Phishing Email Analysis — Netflix Impersonation (Gmail Sender)
-
-**Folder:** `phising analyze/`  
-**Focus:** Email phishing detection, social engineering, sender-domain analysis, urgency manipulation.
-
-**Highlights:**
-- Domain mismatch detection (`@gmail.com`)
-- Corporate tone + brand inconsistency
-- Forced action: credential recovery through email link
-- Strong urgency tactics (“within 1 hour”)
-
-**Skills demonstrated:**
-- Threat identification
-- Defensive reporting
-- Awareness-style documentation
+- Incident analysis and triage
+- Log analysis and security monitoring
+- IOC identification and reporting
+- Phishing and email threat analysis
+- SIEM workflows (ex: Wazuh)
+- Documentation and communication (SOC-style)
 
 ---
 
-## Key Defensive Concepts Covered
+## How This Repository Works
 
-- **Social Engineering Tactics**
-  - authority
-  - fear
-  - urgency
-  - forced action
+This repo is a **container** for multiple labs.
 
-- **Email Red Flags**
-  - sender domain mismatch
-  - suspicious links
-  - credential harvesting patterns
-  - brand inconsistency
+Each lab has its own folder and its own `README.md`, containing:
 
-- **Modern Threat Reality**
-  - AI-assisted phishing is now common
-  - spelling mistakes are no longer reliable indicators
+- The scenario / sample
+- The analysis
+- Evidence (screenshots, logs, etc)
+- Indicators of compromise (IOCs)
+- Recommendations and mitigations
+- Lessons learned
 
 ---
 
-## Tools & Environment
+## Structure
 
-This repository is created and maintained using:
-
-- Linux (daily workflow)
-- Git + GitHub
-- Markdown documentation
-- Basic OSINT-style reasoning (non-invasive)
-- Security mindset focused on defense
+```text
+blue-team-labs/
+├── lab-name-1/
+│   ├── README.md
+│   └── images/ (or evidence/)
+├── lab-name-2/
+│   ├── README.md
+│   └── logs/ (or samples/)
+└── ...
+````
 
 ---
 
-## Future Labs (Planned)
+## Tools & Topics
 
-This repo will expand over time with labs such as:
+Labs in this repository may include:
 
-- Email header analysis (SPF / DKIM / DMARC)
-- IOC extraction and documentation
-- Malicious URL investigation (safe methods)
-- Basic log analysis (Linux auth logs)
-- Brute force detection patterns
-- Simple SOC-style incident reports
-- MITRE ATT&CK mapping
+* Linux security analysis
+* Email header and phishing investigation
+* Wazuh (SIEM / EDR)
+* Authentication anomaly detection
+* Windows/Linux log review
+* Custom scripts (Python / Bash)
+
+---
+
+## Status
+
+This repository is continuously updated with new labs.
+
+Each new folder represents a new case study.
 
 ---
 
@@ -95,18 +75,11 @@ This repo will expand over time with labs such as:
 
 This repository is for **educational and defensive purposes only**.
 
-No malicious links, payloads, or offensive instructions are included.  
-All reports focus on detection, awareness, and safe security practices.
+No malware, credential harvesting, payloads, or offensive instructions are included.
 
 ---
 
-## Contact
+## Author
 
-If you'd like to connect:
-
-- GitHub: https://github.com/vhg3301
-
----
-
-⭐ If you're a recruiter or security professional:  
-This repo is intended to demonstrate **learning speed, defensive thinking, and documentation skills**, not only tooling.
+**Vitor Gabriel Rodrigues**
+GitHub: [https://github.com/vhg3301](https://github.com/vhg3301)
