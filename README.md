@@ -1,4 +1,3 @@
-````markdown
 # Blue Team Labs — Defensive Security Portfolio
 
 Welcome! This repository is my **Blue Team lab portfolio**, focused on **defensive security**, threat detection, and investigation workflows.
@@ -32,21 +31,6 @@ Each lab has its own folder and its own `README.md`, containing:
 - Indicators of compromise (IOCs)
 - Recommendations and mitigations
 - Lessons learned
-
----
-
-## Structure
-
-```text
-blue-team-labs/
-├── lab-name-1/
-│   ├── README.md
-│   └── images/ (or evidence/)
-├── lab-name-2/
-│   ├── README.md
-│   └── logs/ (or samples/)
-└── ...
-````
 
 ---
 
