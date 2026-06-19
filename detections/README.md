@@ -1,4 +1,4 @@
-# Blue-Team-Labs
+# Detection Repository
 
 Detection engineering, threat hunting workflows, and SOC analyst playbooks. Focused on turning attacker behavior into defensible, observable signal.
 
