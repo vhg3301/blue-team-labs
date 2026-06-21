@@ -66,4 +66,4 @@ No malware, credential harvesting, payloads, or offensive instructions are inclu
 ## Author
 
 **Vitor Gabriel Rodrigues**
-GitHub: [https://github.com/vhg3301](https://github.com/vhg3301)
+GitHub: [https://github.com/vhg3301](https://github.com/vitor-sec)
