@@ -104,7 +104,7 @@ Wazuh correlated repeated SSH authentication failures from the same source IP wi
 The screenshot below shows the Wazuh SIEM dashboard correlating multiple SSH authentication failures and generating alerts mapped to the MITRE ATT&CK framework (T1110 – Brute Force).
 
 
-![Wazuh SSH Brute Force Alert](home-lab-Wazuh/images/siem_logs_brute_force.png)
+!(Wazuh SIEM logs)(/blue-team-labs/home-lab-Wazuh/images/siem_logs_brute_force.png)
 
 
 
