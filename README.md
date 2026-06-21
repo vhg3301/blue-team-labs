@@ -62,8 +62,3 @@ This repository is for **educational and defensive purposes only**.
 No malware, credential harvesting, payloads, or offensive instructions are included.
 
 ---
-
-## Author
-
-**Vitor Gabriel Rodrigues**
-GitHub: [https://github.com/vhg3301](https://github.com/vitor-sec)
